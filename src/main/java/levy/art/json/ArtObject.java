@@ -7,7 +7,8 @@ public class ArtObject {
     public String title;
     public String longTitle;
     public ArtImage artImage;
-    @SerializedName("principalOrFirstMaker")
+
+    //@SerializedName("principalOrFirstMaker")
     public String principalOrFirstMaker;
 }
 
