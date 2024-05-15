@@ -9,23 +9,20 @@ public interface RijkService {
     @GET("/api/en/collection")
     Single<RijksCollection> getCollectionByPage(
             @Query("key") String apiKey,
-            @Query("p") int pageNumber,
-            @Query("ps") int resultsPerPage
+            @Query("p") String pageNumber
     );
 
     @GET("/api/en/collection")
     Single<RijksCollection> getCollectionByQuery(
             @Query("key") String apiKey,
             @Query("q") String query,
-            @Query("p") int pageNumber,
-            @Query("ps") int resultsPerPage
+            @Query("p") int pageNumber
     );
 
     @GET("/api/en/collection")
     Single<RijksCollection> getCollectionByArtist(
             @Query("key") String apiKey,
             @Query("involvedMaker") String artist,
-            @Query("p") int pageNumber,
-            @Query("ps") int resultsPerPage
+            @Query("p") int pageNumber
     );
 }

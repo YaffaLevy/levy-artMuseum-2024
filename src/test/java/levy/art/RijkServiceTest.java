@@ -1,5 +1,6 @@
 package levy.art;
 
+import com.andrewoid.ApiKey;
 import levy.art.json.RijksCollection;
 import org.junit.jupiter.api.Test;
 
@@ -10,12 +11,12 @@ class RijkServiceTest {
     @Test
     void getArtObjectsByPage() {
         // Given
-        int pageNumber = 1;
-        int resultsPerPage = 10;
+        ApiKey apiKey = new ApiKey();
+        String keyString = apiKey.get();
         RijkService service = new RijkServiceFactory().getService();
 
         // When
-        RijksCollection response = service.getCollectionByPage(apiKey, pageNumber, resultsPerPage).blockingGet();
+        RijksCollection response = service.getCollectionByPage(keyString, "1").blockingGet();
 
         // Then
         assertNotNull(response);
@@ -23,16 +24,16 @@ class RijkServiceTest {
         assertTrue(response.artObjects.length > 0);
     }
 
+
     @Test
     void getArtObjectsByQuery() {
         // Given
-        String query = "Van Gogh";
-        int pageNumber = 1;
-        int resultsPerPage = 10;
+        ApiKey apiKey = new ApiKey();
+        String keyString = apiKey.get();
         RijkService service = new RijkServiceFactory().getService();
 
         // When
-        RijksCollection response = service.getCollectionByQuery(apiKey, query, pageNumber, resultsPerPage).blockingGet();
+        RijksCollection response = service.getCollectionByQuery(keyString, "flowers", 4).blockingGet();
 
         // Then
         assertNotNull(response);
@@ -43,13 +44,12 @@ class RijkServiceTest {
     @Test
     void getArtObjectsByArtist() {
         // Given
-        String artist = "Rembrandt";
-        int pageNumber = 1;
-        int resultsPerPage = 10;
+        ApiKey apiKey = new ApiKey();
+        String keyString = apiKey.get();
         RijkService service = new RijkServiceFactory().getService();
 
         // When
-        RijksCollection response = service.getCollectionByArtist(apiKey, artist, pageNumber, resultsPerPage).blockingGet();
+        RijksCollection response = service.getCollectionByArtist(keyString,"Van Gogh",1).blockingGet();
 
         // Then
         assertNotNull(response);
