@@ -7,7 +7,6 @@ public class ArtObject {
     public String title;
     public String longTitle;
     public ArtImage webImage;
-
     public String principalOrFirstMaker;
 
 }
