@@ -8,7 +8,6 @@ public class ArtObject {
     public String longTitle;
     public ArtImage artImage;
 
-    //@SerializedName("principalOrFirstMaker")
     public String principalOrFirstMaker;
 }
 
