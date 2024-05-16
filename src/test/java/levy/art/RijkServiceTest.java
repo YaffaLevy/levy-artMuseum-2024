@@ -49,7 +49,7 @@ class RijkServiceTest {
         RijkService service = new RijkServiceFactory().getService();
 
         // When
-        RijksCollection response = service.getCollectionByArtist(keyString,"Johannes Vermeer",1).blockingGet();
+        RijksCollection response = service.getCollectionByArtist(keyString, "Johannes Vermeer" ,1).blockingGet();
 
         // Then
         assertNotNull(response);
