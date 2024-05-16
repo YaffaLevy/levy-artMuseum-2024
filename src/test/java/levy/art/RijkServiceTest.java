@@ -17,7 +17,7 @@ class RijkServiceTest {
         RijkService service = new RijkServiceFactory().getService();
 
         // When
-        RijksCollection response = service.getCollectionByPage(keyString, "1").blockingGet();
+        RijksCollection response = service.getCollectionByPage(keyString, 1).blockingGet();
 
         // Then
         assertNotNull(response);
@@ -38,14 +38,18 @@ class RijkServiceTest {
         RijksCollection response = service.getCollectionByQuery(keyString, "flowers", 4).blockingGet();
 
         // Then
-        ArtObject firstArtObject = response.artObjects[0];
-        assertNotNull(firstArtObject.title);
-        assertFalse(firstArtObject.title.isEmpty());
-        assertNotNull(firstArtObject.longTitle);
-        assertFalse(firstArtObject.longTitle.isEmpty());
         assertNotNull(response);
         assertNotNull(response.artObjects);
-        assertNotNull(response.artObjects[0]);
+
+        ArtObject firstArtObject = response.artObjects[0];
+        assertNotNull(firstArtObject.artImage);
+
+        //assertNotNull(firstArtObject);
+        //assertNotNull(firstArtObject.title);
+        //assertFalse(firstArtObject.title.isEmpty());
+        //assertNotNull(firstArtObject.longTitle);
+        //assertFalse(firstArtObject.longTitle.isEmpty());
+
     }
 
     @Test

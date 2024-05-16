@@ -9,7 +9,7 @@ public interface RijkService {
     @GET("/api/en/collection")
     Single<RijksCollection> getCollectionByPage(
             @Query("key") String apiKey,
-            @Query("p") String pageNumber
+            @Query("p") int pageNumber
     );
 
     @GET("/api/en/collection")
