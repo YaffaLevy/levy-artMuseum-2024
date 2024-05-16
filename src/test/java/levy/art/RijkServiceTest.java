@@ -44,11 +44,6 @@ class RijkServiceTest {
         ArtObject firstArtObject = response.artObjects[0];
         assertNotNull(firstArtObject.webImage);
 
-        //assertNotNull(firstArtObject);
-        //assertNotNull(firstArtObject.title);
-        //assertFalse(firstArtObject.title.isEmpty());
-        //assertNotNull(firstArtObject.longTitle);
-        //assertFalse(firstArtObject.longTitle.isEmpty());
 
     }
 
