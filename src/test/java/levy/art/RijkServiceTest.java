@@ -43,6 +43,7 @@ class RijkServiceTest {
 
         ArtObject firstArtObject = response.artObjects[0];
         assertNotNull(firstArtObject.webImage);
+        assertNotNull(firstArtObject.webImage.url);
 
 
     }
