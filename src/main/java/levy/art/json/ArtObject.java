@@ -6,8 +6,9 @@ import levy.art.json.ArtImage;
 public class ArtObject {
     public String title;
     public String longTitle;
-    public ArtImage artImage;
+    public ArtImage webImage;
 
     public String principalOrFirstMaker;
+
 }
 
