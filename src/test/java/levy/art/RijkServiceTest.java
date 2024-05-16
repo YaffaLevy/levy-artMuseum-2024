@@ -1,6 +1,7 @@
 package levy.art;
 
 import com.andrewoid.ApiKey;
+import levy.art.json.ArtObject;
 import levy.art.json.RijksCollection;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RijkServiceTest {
 
     @Test
-    void getArtObjectsByPage() {
+    void getCollectionByPage() {
         // Given
         ApiKey apiKey = new ApiKey();
         String keyString = apiKey.get();
@@ -21,12 +22,13 @@ class RijkServiceTest {
         // Then
         assertNotNull(response);
         assertNotNull(response.artObjects);
-        assertNotNull(response.artObjects[0]);
+        assertTrue(response.artObjects.length > 0);
+        ArtObject firstArtObject = response.artObjects[0];
     }
 
 
     @Test
-    void getArtObjectsByQuery() {
+    void getCollectionByQuery() {
         // Given
         ApiKey apiKey = new ApiKey();
         String keyString = apiKey.get();
@@ -42,7 +44,7 @@ class RijkServiceTest {
     }
 
     @Test
-    void getArtObjectsByArtist() {
+    void getCollectionByArtist() {
         // Given
         ApiKey apiKey = new ApiKey();
         String keyString = apiKey.get();
