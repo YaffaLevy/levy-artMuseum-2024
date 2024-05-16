@@ -21,7 +21,7 @@ class RijkServiceTest {
         // Then
         assertNotNull(response);
         assertNotNull(response.artObjects);
-        assertTrue(response.artObjects.length > 0);
+        assertNotNull(response.artObjects[0]);
     }
 
 
@@ -38,7 +38,7 @@ class RijkServiceTest {
         // Then
         assertNotNull(response);
         assertNotNull(response.artObjects);
-        assertTrue(response.artObjects.length > 0);
+        assertNotNull(response.artObjects[0]);
     }
 
     @Test
@@ -49,12 +49,12 @@ class RijkServiceTest {
         RijkService service = new RijkServiceFactory().getService();
 
         // When
-        RijksCollection response = service.getCollectionByArtist(keyString,"Van Gogh",1).blockingGet();
+        RijksCollection response = service.getCollectionByArtist(keyString,"Johannes Vermeer",1).blockingGet();
 
         // Then
         assertNotNull(response);
         assertNotNull(response.artObjects);
-        assertTrue(response.artObjects.length > 0);
+        assertNotNull(response.artObjects[0]);
     }
 }
 
