@@ -4,10 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
-import javax.swing.*;
-import java.awt.*;
-import java.net.URL;
-
 public class ImageFrame extends JFrame {
     public ImageFrame(String imageUrl) {
         setTitle("Image Viewer");
@@ -16,7 +12,9 @@ public class ImageFrame extends JFrame {
 
         try {
             URL url = new URL(imageUrl);
-            ImageIcon icon = new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(800, -1, Image.SCALE_SMOOTH));
+            ImageIcon icon = new ImageIcon(
+                    new ImageIcon(url).getImage().getScaledInstance(800, -1, Image.SCALE_SMOOTH)
+            );
             JLabel label = new JLabel(icon);
             JScrollPane scrollPane = new JScrollPane(label);
             add(scrollPane, BorderLayout.CENTER);

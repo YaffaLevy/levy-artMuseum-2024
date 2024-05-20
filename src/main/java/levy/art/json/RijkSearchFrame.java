@@ -34,8 +34,6 @@ public class RijkSearchFrame extends JFrame {
 
         setTitle("Rijks");
         setSize(1000, 800);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
 
         JPanel topPanel = new JPanel();
         searchField = new JTextField(20);
@@ -46,6 +44,9 @@ public class RijkSearchFrame extends JFrame {
         topPanel.add(prevButton);
         topPanel.add(nextButton);
         add(topPanel, BorderLayout.NORTH);
+
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
         imagesPanel = new JPanel(new GridLayout(2, 5, 10, 10));
         add(new JScrollPane(imagesPanel), BorderLayout.CENTER);
