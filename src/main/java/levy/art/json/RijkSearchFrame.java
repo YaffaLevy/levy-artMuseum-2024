@@ -18,7 +18,8 @@ import levy.art.json.ArtObject;
 
 public class RijkSearchFrame extends JFrame {
     private JTextField searchField;
-    private JButton prevButton, nextButton;
+    private JButton prevButton;
+    private JButton nextButton;
     private JPanel imagesPanel;
     private int currentPage = 1;
     private RijkService rijkService;
@@ -31,8 +32,6 @@ public class RijkSearchFrame extends JFrame {
         ApiKey apiKey = new ApiKey();
         String keyString = apiKey.get();
 
-
-
         setTitle("Rijks");
         setSize(1000, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -42,6 +41,7 @@ public class RijkSearchFrame extends JFrame {
         searchField = new JTextField(20);
         prevButton = new JButton("Previous Page");
         nextButton = new JButton("Next Page");
+
         topPanel.add(searchField);
         topPanel.add(prevButton);
         topPanel.add(nextButton);
@@ -92,7 +92,9 @@ public class RijkSearchFrame extends JFrame {
         for (ArtObject art : artObjects) {
             try {
                 URL url = new URL(art.getImageUrl());
-                ImageIcon icon = new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+                ImageIcon icon = new ImageIcon(new ImageIcon(url)
+                        .getImage()
+                        .getScaledInstance(150, 150, Image.SCALE_SMOOTH));
                 JLabel label = new JLabel(icon);
                 label.setToolTipText(art.getTitle() + " by " + art.getArtist());
                 label.addMouseListener(new MouseAdapter() {
