@@ -21,9 +21,9 @@ class RijkServiceTest {
 
         // Then
         assertNotNull(response);
-        assertNotNull(response.artObjects);
-        assertTrue(response.artObjects.length > 0);
-        ArtObject firstArtObject = response.artObjects[0];
+        assertNotNull(response.getArtObjects());
+        assertTrue(response.getArtObjects().length > 0);
+        ArtObject firstArtObject = response.getArtObjects()[0];
     }
 
 
@@ -39,10 +39,10 @@ class RijkServiceTest {
 
         // Then
         assertNotNull(response);
-        assertNotNull(response.artObjects);
-        ArtObject firstArtObject = response.artObjects[0];
-        assertNotNull(firstArtObject.webImage);
-        assertNotNull(firstArtObject.webImage.url);
+        assertNotNull(response.getArtObjects());
+        ArtObject firstArtObject = response.getArtObjects()[0];
+        assertNotNull(firstArtObject.getWebImage());
+        assertNotNull(firstArtObject.getWebImage().getUrl());
 
 
     }
@@ -59,8 +59,8 @@ class RijkServiceTest {
 
         // Then
         assertNotNull(response);
-        assertNotNull(response.artObjects);
-        assertNotNull(response.artObjects[0]);
+        assertNotNull(response.getArtObjects());
+        assertNotNull(response.getArtObjects()[0]);
     }
 }
 
