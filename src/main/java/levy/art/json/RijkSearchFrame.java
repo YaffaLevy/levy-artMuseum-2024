@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
-import java.util.List;
 
 import com.andrewoid.ApiKey;
 import hu.akarnokd.rxjava3.swing.SwingSchedulers;
@@ -13,12 +12,12 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import levy.art.RijkService;
 import levy.art.RijkServiceFactory;
-import levy.art.json.RijksCollection;
-import levy.art.json.ArtObject;
+
 
 public class RijkSearchFrame extends JFrame {
     private JTextField searchField;
-    private JButton prevButton, nextButton;
+    private JButton prevButton;
+    private JButton nextButton;
     private JPanel imagesPanel;
     private int currentPage = 1;
     private RijkService rijkService;
@@ -36,10 +35,10 @@ public class RijkSearchFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        JPanel topPanel = new JPanel();
         searchField = new JTextField(20);
         prevButton = new JButton("Previous Page");
         nextButton = new JButton("Next Page");
+        JPanel topPanel = new JPanel();
         topPanel.add(prevButton);
         topPanel.add(searchField);
         topPanel.add(nextButton);
