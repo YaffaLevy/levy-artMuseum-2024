@@ -29,9 +29,7 @@ public class RijkSearchFrame extends JFrame {
         this.rijkService = rijkService;
 
         ApiKey apiKey = new ApiKey();
-        String keyString = apiKey.get();
-
-
+        this.apiKey = apiKey.get();
 
         setTitle("Rijks");
         setSize(1000, 800);
@@ -42,12 +40,12 @@ public class RijkSearchFrame extends JFrame {
         searchField = new JTextField(20);
         prevButton = new JButton("Previous Page");
         nextButton = new JButton("Next Page");
-        topPanel.add(searchField);
         topPanel.add(prevButton);
+        topPanel.add(searchField);
         topPanel.add(nextButton);
         add(topPanel, BorderLayout.NORTH);
 
-        imagesPanel = new JPanel(new GridLayout(3, 4, 5, 10));
+        imagesPanel = new JPanel(new GridLayout(2, 5, 10, 10));
         add(new JScrollPane(imagesPanel), BorderLayout.CENTER);
 
         prevButton.addActionListener(e -> {
@@ -71,19 +69,30 @@ public class RijkSearchFrame extends JFrame {
     }
 
     private void searchArt() {
-        ApiKey apiKey = new ApiKey();
-        String keyString = apiKey.get();
-
         if (disposable != null && !disposable.isDisposed()) {
             disposable.dispose();
         }
 
-        disposable = rijkService.getCollectionByQuery(keyString, searchField.getText(), currentPage)
-                .subscribeOn(Schedulers.io())
-                .observeOn(SwingSchedulers.edt())
-                .subscribe(
-                        this::handleResponse,
-                        Throwable::printStackTrace);
+        ApiKey apiKey = new ApiKey();
+        String keyString = apiKey.get();
+
+        if (searchField.getText().trim().isEmpty()) {
+
+            disposable = rijkService.getCollectionByPage(keyString, currentPage)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(SwingSchedulers.edt())
+                    .subscribe(
+                            this::handleResponse,
+                            Throwable::printStackTrace);
+        } else {
+
+            disposable = rijkService.getCollectionByQuery(keyString, searchField.getText(), currentPage)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(SwingSchedulers.edt())
+                    .subscribe(
+                            this::handleResponse,
+                            Throwable::printStackTrace);
+        }
     }
 
     private void handleResponse(RijksCollection rijksCollection) {
@@ -92,15 +101,23 @@ public class RijkSearchFrame extends JFrame {
         for (ArtObject art : artObjects) {
             try {
                 URL url = new URL(art.getImageUrl());
-                ImageIcon icon = new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
-                JLabel label = new JLabel(icon);
+                ImageIcon originalIcon = new ImageIcon(url);
+
+                Image scaledImage = originalIcon.getImage().getScaledInstance(200, -1, Image.SCALE_SMOOTH);
+
+                JLabel label = new JLabel();
+                ImageIcon imageIcon = new ImageIcon(scaledImage);
+                label.setIcon(imageIcon);
                 label.setToolTipText(art.getTitle() + " by " + art.getArtist());
+
                 label.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        new ImageFrame(art.getImageUrl()).setVisible(true);
+                        System.out.println("Yay you clicked me");
+                        new ImageFrame(art.getTitle(), art.getArtist(), art.getImageUrl()).setVisible(true);
                     }
                 });
+
                 imagesPanel.add(label);
             } catch (Exception ex) {
                 ex.printStackTrace();
