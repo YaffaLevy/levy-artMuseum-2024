@@ -4,7 +4,7 @@ package levy.art.json;
 public class ArtObject {
     private String title;
     private String principalOrFirstMaker;
-    private WebImage webImage;
+    private ArtImage webImage;
 
     public String getTitle() {
         return title;
@@ -18,15 +18,9 @@ public class ArtObject {
         return webImage != null ? webImage.getUrl() : null;
     }
 
-    public WebImage getWebImage() {
+    public ArtImage getWebImage() {
         return webImage;
     }
 
-    public static class WebImage {
-        private String url;
 
-        public String getUrl() {
-            return url;
-        }
-    }
 }
