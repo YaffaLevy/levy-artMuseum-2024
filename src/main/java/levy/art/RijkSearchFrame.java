@@ -1,18 +1,18 @@
-package levy.art.json;
+package levy.art;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.net.URL;
 
 import com.andrewoid.ApiKey;
 import hu.akarnokd.rxjava3.swing.SwingSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import levy.art.ImageFrame;
-import levy.art.RijkService;
-import levy.art.RijkServiceFactory;
+import levy.art.json.ArtObject;
+import levy.art.json.RijksCollection;
 
 
 public class RijkSearchFrame extends JFrame {
@@ -103,13 +103,14 @@ public class RijkSearchFrame extends JFrame {
                 URL url = new URL(art.getImageUrl());
                 ImageIcon originalIcon = new ImageIcon(url);
 
+                // Resize the image while maintaining aspect ratio
                 Image scaledImage = originalIcon.getImage().getScaledInstance(200, -1, Image.SCALE_SMOOTH);
+                ImageIcon icon = new ImageIcon(scaledImage);
 
-                JLabel label = new JLabel();
-                ImageIcon imageIcon = new ImageIcon(scaledImage);
-                label.setIcon(imageIcon);
+                JLabel label = new JLabel(icon);
                 label.setToolTipText(art.getTitle() + " by " + art.getArtist());
 
+                // Add mouse listener to the label
                 label.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
@@ -119,11 +120,12 @@ public class RijkSearchFrame extends JFrame {
                 });
 
                 imagesPanel.add(label);
-            } catch (Exception ex) {
+            } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
     }
+
 
     public static void main(String[] args) {
         RijkService rijkService = new RijkServiceFactory().getService();
