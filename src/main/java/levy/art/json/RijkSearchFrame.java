@@ -45,7 +45,7 @@ public class RijkSearchFrame extends JFrame {
         topPanel.add(nextButton);
         add(topPanel, BorderLayout.NORTH);
 
-        imagesPanel = new JPanel(new GridLayout(2, 5, 10, 10));
+        imagesPanel = new JPanel(new GridLayout(3, 4, 10, 10));
         add(new JScrollPane(imagesPanel), BorderLayout.CENTER);
 
         prevButton.addActionListener(e -> {
