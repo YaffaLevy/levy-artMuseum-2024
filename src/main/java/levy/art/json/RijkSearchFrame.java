@@ -10,6 +10,7 @@ import com.andrewoid.ApiKey;
 import hu.akarnokd.rxjava3.swing.SwingSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import levy.art.ImageFrame;
 import levy.art.RijkService;
 import levy.art.RijkServiceFactory;
 
@@ -122,8 +123,6 @@ public class RijkSearchFrame extends JFrame {
                 ex.printStackTrace();
             }
         }
-        imagesPanel.revalidate();
-        imagesPanel.repaint();
     }
 
     public static void main(String[] args) {

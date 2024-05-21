@@ -1,4 +1,4 @@
-package levy.art.json;
+package levy.art;
 
 import javax.swing.*;
 import java.awt.*;
