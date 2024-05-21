@@ -103,8 +103,8 @@ public class RijkSearchFrame extends JFrame {
         for (ArtObject art : artObjects) {
             try {
                 URL url = new URL(art.getImageUrl());
-                BufferedImage image = ImageIO.read(url);
-                Image scaledImage = image.getScaledInstance(200, -1, Image.SCALE_SMOOTH);
+                Image image = ImageIO.read(url);
+                Image scaledImage = image.getScaledInstance(200, -1, Image.SCALE_DEFAULT);
                 ImageIcon icon = new ImageIcon(scaledImage);
 
                 JLabel label = new JLabel(icon);
@@ -122,8 +122,8 @@ public class RijkSearchFrame extends JFrame {
                 ex.printStackTrace();
             }
         }
-    }
 
+    }
 
     public static void main(String[] args) {
         RijkService rijkService = new RijkServiceFactory().getService();
