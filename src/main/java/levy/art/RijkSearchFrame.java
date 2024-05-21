@@ -1,9 +1,11 @@
 package levy.art;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
@@ -101,20 +103,16 @@ public class RijkSearchFrame extends JFrame {
         for (ArtObject art : artObjects) {
             try {
                 URL url = new URL(art.getImageUrl());
-                ImageIcon originalIcon = new ImageIcon(url);
-
-                // Resize the image while maintaining aspect ratio
-                Image scaledImage = originalIcon.getImage().getScaledInstance(200, -1, Image.SCALE_SMOOTH);
+                BufferedImage image = ImageIO.read(url);
+                Image scaledImage = image.getScaledInstance(200, -1, Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(scaledImage);
 
                 JLabel label = new JLabel(icon);
                 label.setToolTipText(art.getTitle() + " by " + art.getArtist());
 
-                // Add mouse listener to the label
                 label.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        System.out.println("Yay you clicked me");
                         new ImageFrame(art.getTitle(), art.getArtist(), art.getImageUrl()).setVisible(true);
                     }
                 });
