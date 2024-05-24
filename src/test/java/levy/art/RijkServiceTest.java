@@ -8,12 +8,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RijkServiceTest {
-
+    ApiKey apiKey = new ApiKey();
+    String keyString = apiKey.get();
     @Test
     void getCollectionByPage() {
         // Given
-        ApiKey apiKey = new ApiKey();
-        String keyString = apiKey.get();
         RijkService service = new RijkServiceFactory().getService();
 
         // When
@@ -30,8 +29,6 @@ class RijkServiceTest {
     @Test
     void getCollectionByQuery() {
         // Given
-        ApiKey apiKey = new ApiKey();
-        String keyString = apiKey.get();
         RijkService service = new RijkServiceFactory().getService();
 
         // When
@@ -50,8 +47,6 @@ class RijkServiceTest {
     @Test
     void getCollectionByArtist() {
         // Given
-        ApiKey apiKey = new ApiKey();
-        String keyString = apiKey.get();
         RijkService service = new RijkServiceFactory().getService();
 
         // When
