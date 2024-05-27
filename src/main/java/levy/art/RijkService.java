@@ -7,8 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface RijkService {
-    ApiKey apiKey = new ApiKey();
-    String keyString = apiKey.get();
     @GET("/api/en/collection")
     Single<RijksCollection> getCollectionByPage(
             @Query("key") String apiKey,

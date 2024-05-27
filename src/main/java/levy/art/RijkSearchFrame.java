@@ -29,8 +29,6 @@ public class RijkSearchFrame extends JFrame {
     public RijkSearchFrame(RijkService rijkService) {
         this.rijkService = rijkService;
 
-        ApiKey apiKey = new ApiKey();
-        this.apiKey = apiKey.get();
 
         setTitle("Rijks");
         setSize(1000, 800);
@@ -73,7 +71,6 @@ public class RijkSearchFrame extends JFrame {
         if (disposable != null && !disposable.isDisposed()) {
             disposable.dispose();
         }
-
         ApiKey apiKey = new ApiKey();
         String keyString = apiKey.get();
 
