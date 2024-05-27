@@ -5,11 +5,10 @@ import levy.art.json.ArtObject;
 import levy.art.json.RijksCollection;
 import org.junit.jupiter.api.Test;
 
+import static levy.art.RijkService.keyString;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RijkServiceTest {
-    ApiKey apiKey = new ApiKey();
-    String keyString = apiKey.get();
     @Test
     void getCollectionByPage() {
         // Given
