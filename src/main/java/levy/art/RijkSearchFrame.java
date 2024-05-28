@@ -15,7 +15,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import levy.art.json.ArtObject;
 import levy.art.json.RijksCollection;
 
-
 public class RijkSearchFrame extends JFrame {
     private JTextField searchField;
     private JButton prevButton;
@@ -29,6 +28,8 @@ public class RijkSearchFrame extends JFrame {
     public RijkSearchFrame(RijkService rijkService) {
         this.rijkService = rijkService;
 
+        ApiKey apiKeyInstance = new ApiKey();
+        this.apiKey = apiKeyInstance.get();
 
         setTitle("Rijks");
         setSize(1000, 800);
@@ -71,20 +72,16 @@ public class RijkSearchFrame extends JFrame {
         if (disposable != null && !disposable.isDisposed()) {
             disposable.dispose();
         }
-        ApiKey apiKey = new ApiKey();
-        String keyString = apiKey.get();
 
         if (searchField.getText().trim().isEmpty()) {
-
-            disposable = rijkService.getCollectionByPage(keyString, currentPage)
+            disposable = rijkService.getCollectionByPage(apiKey, currentPage)
                     .subscribeOn(Schedulers.io())
                     .observeOn(SwingSchedulers.edt())
                     .subscribe(
                             this::handleResponse,
                             Throwable::printStackTrace);
         } else {
-
-            disposable = rijkService.getCollectionByQuery(keyString, searchField.getText(), currentPage)
+            disposable = rijkService.getCollectionByQuery(apiKey, searchField.getText(), currentPage)
                     .subscribeOn(Schedulers.io())
                     .observeOn(SwingSchedulers.edt())
                     .subscribe(
@@ -118,7 +115,8 @@ public class RijkSearchFrame extends JFrame {
                 ex.printStackTrace();
             }
         }
-
+        imagesPanel.revalidate();
+        imagesPanel.repaint();
     }
 
     public static void main(String[] args) {
