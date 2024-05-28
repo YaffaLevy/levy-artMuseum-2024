@@ -1,5 +1,6 @@
 package levy.art;
 
+import com.andrewoid.ApiKey;
 import io.reactivex.rxjava3.core.Single;
 import levy.art.json.RijksCollection;
 import retrofit2.http.GET;

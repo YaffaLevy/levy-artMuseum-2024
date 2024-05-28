@@ -1,13 +1,26 @@
 package levy.art.json;
 
-import com.google.gson.annotations.SerializedName;
-import levy.art.json.ArtImage;
 
 public class ArtObject {
-    public String title;
-    public String longTitle;
-    public ArtImage webImage;
-    public String principalOrFirstMaker;
+    private String title;
+    private String principalOrFirstMaker;
+    private ArtImage webImage;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getArtist() {
+        return principalOrFirstMaker;
+    }
+
+    public String getImageUrl() {
+        return webImage != null ? webImage.getUrl() : null;
+    }
+
+    public ArtImage getWebImage() {
+        return webImage;
+    }
+
 
 }
-
